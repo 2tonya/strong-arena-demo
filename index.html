@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Сильная Арена — сеть фитнес-центров</title>
+  <meta name="description" content="Сильная Арена — фитнес-центры в Набережных Челнах и Нижнекамске: тренажёрный зал, бассейн, кардио, групповые занятия, сауна. Выберите филиал.">
+  <meta name="theme-color" content="#F3F1EC">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#F3F1EC; --paper:#FFFFFF; --ink:#141414; --muted:#4B4B46; --soft:#7A7A72;
+      --line:#D8D3C9; --water:#2A5B8A; --signal:#C46A2B; --signal-hover:#AD5B22;
+      --max:1180px; --r:10px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);
+      font:400 16px/1.65 "Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;
+      background-image:linear-gradient(rgba(20,20,20,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(20,20,20,.04) 1px,transparent 1px);
+      background-size:32px 32px}
+    a{color:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;position:relative}
+    h1,h2,h3{margin:0;font-family:"Unbounded","Manrope",sans-serif;line-height:1.05}
+    h1{font-size:clamp(38px,6vw,74px);font-weight:700;letter-spacing:-.03em;text-transform:uppercase}
+    h2{font-size:clamp(26px,3.2vw,40px);font-weight:700;letter-spacing:-.02em}
+    h3{font-size:18px;font-weight:700;letter-spacing:-.01em}
+    p{margin:0}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:6px;
+      border:1px solid var(--signal);background:var(--signal);color:#fff;text-decoration:none;
+      font:700 14px/1 "Manrope",sans-serif;transition:background .18s,transform .18s,border-color .18s;cursor:pointer}
+    .btn:hover{background:var(--signal-hover);border-color:var(--signal-hover);transform:translateY(-1px)}
+    .btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+    .btn.ghost:hover{background:rgba(20,20,20,.05);transform:translateY(-1px)}
+    .nav{position:sticky;top:0;z-index:20;background:rgba(243,241,236,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    .nav .inner{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:72px}
+    .brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+    .brand b{font:700 20px/1 "Unbounded",sans-serif;letter-spacing:-.02em;text-transform:uppercase}
+    .brand span{color:var(--soft);font:600 12px/1 "Manrope",sans-serif}
+    .menu{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+    .menu a{color:var(--muted);text-decoration:none;font:600 13px/1 "Manrope",sans-serif}
+    .menu a:hover{color:var(--ink)}
+    .hero{padding:64px 0 52px}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
+    .kicker{font:700 12px/1 "Manrope",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--water);margin-bottom:16px}
+    .lead{margin-top:18px;max-width:62ch;color:var(--muted);font-size:19px;line-height:1.55}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+    .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+    .fact{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.55);font:600 13px/1 "Manrope",sans-serif;color:var(--muted)}
+    .arena-card{background:var(--ink);color:#F7F5F0;border-radius:var(--r);overflow:hidden;border:1px solid #222}
+    .arena-band{padding:18px 20px;border-top:1px solid rgba(255,255,255,.1);display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+    .arena-band:first-child{border-top:0}
+    .arena-tag{font:700 11px/1 "Manrope",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#BFD3E6;padding-top:4px;min-width:78px}
+    .arena-band strong{display:block;font:700 18px/1.2 "Manrope",sans-serif;margin-bottom:4px}
+    .arena-band span{color:rgba(247,245,240,.72);font-size:14px;line-height:1.45}
+    .arena-foot{padding:16px 20px;background:linear-gradient(90deg,rgba(42,91,138,.35),rgba(42,91,138,.08));border-top:1px solid rgba(255,255,255,.1);font:600 13px/1.45 "Manrope",sans-serif;color:#DCEAF6}
+    section{padding:68px 0}
+    .ruled{border-top:1px solid var(--line)}
+    .head{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-bottom:26px}
+    .head p{max-width:62ch;color:var(--muted)}
+    .branches{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .branch{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:8px}
+    .branch .city{font:700 11px/1 "Manrope",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--water)}
+    .branch h3{font-family:"Manrope",sans-serif;font-size:20px;font-weight:700}
+    .branch p{color:var(--muted);font-size:15px;line-height:1.5}
+    .rating{margin-top:auto;padding-top:10px;font:700 14px/1 "Manrope",sans-serif;color:var(--ink)}
+    .rating small{font-weight:600;color:var(--soft)}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .shot{position:relative;aspect-ratio:4/3;background:linear-gradient(180deg,#ECE8E0,#DCD6CC);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+    .shot span{position:relative;z-index:1;padding:10px 12px;border:1px dashed #B9B1A6;border-radius:999px;background:rgba(255,255,255,.65);color:var(--soft);font:600 12px/1 "Manrope",sans-serif;text-align:center}
+    .shot img[src]{z-index:2}
+    .zones{display:grid;grid-template-columns:1.3fr .7fr;gap:16px}
+    .panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+    .zone-list{display:grid;gap:0}
+    .zone{display:grid;grid-template-columns:180px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+    .zone:first-child{border-top:0;padding-top:0}
+    .zone dt{font:700 15px/1.35 "Manrope",sans-serif;color:var(--ink)}
+    .zone dd{margin:0;color:var(--muted);font-size:15px;line-height:1.5}
+    .pool{background:linear-gradient(180deg,#fff,#F7FAFD);border:1px solid #CFE0EE}
+    .pool h3{color:var(--water);font-family:"Manrope",sans-serif;font-size:22px;margin-bottom:10px}
+    .pool ul{margin:10px 0 0;padding-left:18px;color:var(--muted)}
+    .pool li{margin:6px 0}
+    .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .ledger{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+    .ledger h3{font-family:"Manrope",sans-serif;font-size:20px;font-weight:700;margin-bottom:4px}
+    .ledger .sub{color:var(--soft);font-size:13px;margin-bottom:14px}
+    .row{display:grid;grid-template-columns:1fr auto;gap:14px;padding:12px 0;border-top:1px solid var(--line);align-items:start}
+    .row span{color:var(--ink);font-size:15px;line-height:1.4}
+    .row small{display:block;color:var(--soft);font-size:12px;line-height:1.4;margin-top:3px}
+    .row b{white-space:nowrap;font:700 15px/1.2 "Manrope",sans-serif}
+    .note{margin-top:14px;color:var(--soft);font-size:13px;line-height:1.55}
+    .visit{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .dl{display:grid;gap:13px}
+    .dl div{display:grid;grid-template-columns:150px 1fr;gap:12px;font-size:15px}
+    .dl dt{color:var(--soft);font-weight:600}
+    .dl dd{margin:0}
+    .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .pill{display:inline-flex;padding:10px 14px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font:600 13px/1 "Manrope",sans-serif;color:var(--muted);background:#fff}
+    .pill:hover{color:var(--ink);border-color:#C8C1B5}
+    footer{padding:28px 0 40px;color:var(--soft);font-size:13px;border-top:1px solid var(--line)}
+    footer .inner{text-align:center}
+    footer .demo{margin-top:8px;color:var(--signal);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+    @media (prefers-reduced-motion:no-preference){
+      .reveal{opacity:0;transform:translateY(10px);animation:up .55s ease forwards}
+      .d1{animation-delay:.04s}.d2{animation-delay:.1s}.d3{animation-delay:.16s}.d4{animation-delay:.22s}
+      @keyframes up{to{opacity:1;transform:none}}
+    }
+    @media (max-width:980px){.hero-grid,.zones,.price-grid,.visit,.branches{grid-template-columns:1fr}.menu{display:none}.head,.gallery{grid-template-columns:1fr}.gallery{grid-template-columns:1fr 1fr}}
+    @media (max-width:700px){.zone,.dl div{grid-template-columns:1fr;gap:4px}.hero{padding-top:40px}h1{font-size:clamp(34px,11vw,52px)}.gallery{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap inner">
+      <a class="brand" href="#top"><b>Сильная Арена</b><span>Сеть фитнес-центров</span></a>
+      <div class="menu">
+        <a href="#branches">Филиалы</a>
+        <a href="#halls">Залы</a>
+        <a href="#zones">Направления</a>
+        <a href="#prices">Абонементы</a>
+        <a href="#visit">Контакты</a>
+      </div>
+      <a class="btn" href="#branches">Выбрать филиал</a>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="kicker reveal">Набережные Челны · Нижнекамск</div>
+          <h1 class="reveal d1">Тренажёрный зал, бассейн и кардио в одной сети</h1>
+          <p class="lead reveal d2">«Сильная Арена» — фитнес-центры с силовыми зонами, кардио, групповыми программами, бассейном и зонами восстановления. На странице — все филиалы сети, основные направления и ориентиры по абонементам.</p>
+          <div class="hero-actions reveal d3">
+            <a class="btn" href="#branches">Смотреть филиалы</a>
+            <a class="btn ghost" href="#halls">Посмотреть залы</a>
+          </div>
+          <div class="facts reveal d4">
+            <span class="fact">3 филиала</span>
+            <span class="fact">Тренажёрный зал и кардио</span>
+            <span class="fact">Бассейн и аквааэробика</span>
+            <span class="fact">Групповые занятия</span>
+          </div>
+        </div>
+        <aside class="arena-card reveal d2" aria-label="Что есть в клубах">
+          <div class="arena-band">
+            <div class="arena-tag">Зал</div>
+            <div><strong>Силовые и кардио</strong><span>Тренажёрные зоны, кардио и групповые программы — формат зависит от филиала.</span></div>
+          </div>
+          <div class="arena-band">
+            <div class="arena-tag">Вода</div>
+            <div><strong>Бассейн и аквааэробика</strong><span>В филиалах с бассейном — плавание, аквааэробика и занятия с тренером.</span></div>
+          </div>
+          <div class="arena-band">
+            <div class="arena-tag">Сауна</div>
+            <div><strong>Восстановление</strong><span>Финская сауна и другие зоны восстановления — наличие уточняйте в выбранном клубе.</span></div>
+          </div>
+          <div class="arena-foot">Есть противопоказания, необходима консультация специалиста.</div>
+        </aside>
+      </div>
+    </header>
+
+    <section id="branches" class="ruled">
+      <div class="wrap">
+        <div class="head">
+          <div>
+            <h2>Филиалы</h2>
+          </div>
+          <p>Выберите удобный клуб. Услуги, расписание и цены могут отличаться по филиалам — актуальную информацию уточняйте в карточке филиала или у администратора.</p>
+        </div>
+        <div class="branches">
+          <article class="branch">
+            <div class="city">Набережные Челны</div>
+            <h3>54-й комплекс, 26</h3>
+            <p>1–2 этаж, Новый Город, Автозаводский район.</p>
+            <div class="rating">4,8 <small>· 454 оценки</small></div>
+          </article>
+          <article class="branch">
+            <div class="city">Набережные Челны</div>
+            <h3>ТЦ «Палитра»</h3>
+            <p>Проспект Мира, 49а.</p>
+            <div class="rating">4,7 <small>· 154 оценки</small></div>
+          </article>
+          <article class="branch">
+            <div class="city">Нижнекамск</div>
+            <h3>Сити Молл</h3>
+            <p>Проспект Химиков, 18.</p>
+            <div class="rating">5,0 <small>· 97 оценок</small></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="halls" class="ruled">
+      <div class="wrap">
+        <div class="head">
+          <div>
+            <h2>Залы и пространство</h2>
+          </div>
+          <p>Здесь показываются фото залов, бассейна и зон клуба. Добавьте изображения в папку <code>img/halls/</code> (hall-1.jpg … hall-6.jpg), и они появятся на странице.</p>
+        </div>
+        <div class="gallery">
+          <figure class="shot"><img src="img/halls/hall-1.jpg" alt="Тренажёрный зал" loading="lazy" onerror="this.remove()"><span>Фото зала 1</span></figure>
+          <figure class="shot"><img src="img/halls/hall-2.jpg" alt="Тренажёрный зал" loading="lazy" onerror="this.remove()"><span>Фото зала 2</span></figure>
+          <figure class="shot"><img src="img/halls/hall-3.jpg" alt="Кардио-зона" loading="lazy" onerror="this.remove()"><span>Фото зала 3</span></figure>
+          <figure class="shot"><img src="img/halls/hall-4.jpg" alt="Бассейн" loading="lazy" onerror="this.remove()"><span>Фото зала 4</span></figure>
+          <figure class="shot"><img src="img/halls/hall-5.jpg" alt="Групповые занятия" loading="lazy" onerror="this.remove()"><span>Фото зала 5</span></figure>
+          <figure class="shot"><img src="img/halls/hall-6.jpg" alt="Зона восстановления" loading="lazy" onerror="this.remove()"><span>Фото зала 6</span></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="zones" class="ruled">
+      <div class="wrap">
+        <div class="head">
+          <div>
+            <h2>Направления</h2>
+          </div>
+          <p>Состав направлений зависит от филиала. Ниже — основные форматы, которые встречаются в сети.</p>
+        </div>
+        <div class="zones">
+          <div class="panel">
+            <dl class="zone-list">
+              <div class="zone"><dt>Тренажёрный зал</dt><dd>Силовые тренажёры, свободные веса и кардио-зона. В отдельных филиалах — оборудование на двух этажах.</dd></div>
+              <div class="zone"><dt>Групповые занятия</dt><dd>Аэробика, джампинг, зумба, йога, кроссфит, пилатес, стретчинг, танцевальные программы, фитнес для детей — расписание уточняйте в клубе.</dd></div>
+              <div class="zone"><dt>Персональные тренировки</dt><dd>Занятия с тренером под цель: техника, программа, контроль нагрузки.</dd></div>
+              <div class="zone"><dt>Оплата</dt><dd>Обычно доступны оплата картой, наличными, через банк и по QR-коду; условия уточняйте в выбранном филиале.</dd></div>
+            </dl>
+          </div>
+          <div class="panel pool">
+            <h3>Бассейн и сауна</h3>
+            <p>В филиалах с бассейном доступны плавание, аквааэробика и восстановление после тренировки.</p>
+            <ul>
+              <li>Крытый бассейн, в том числе с подогревом (по филиалам)</li>
+              <li>Аквааэробика и занятия с тренером</li>
+              <li>Финская сауна / зоны восстановления</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prices" class="ruled">
+      <div class="wrap">
+        <div class="head">
+          <div>
+            <h2>Абонементы</h2>
+          </div>
+          <p>Ниже — ориентиры по абонементам из открытых данных (карточка филиала в 2ГИС, обновление 02.09.2026). Стоимость и наполнение могут отличаться по филиалам и акциям.</p>
+        </div>
+        <div class="price-grid">
+          <div class="ledger">
+            <h3>Краткосрочные</h3>
+            <div class="sub">Ориентир</div>
+            <div class="row"><span>1 месяц — тренажёрный зал<small>Групповые, тренажёрный зал, кардио, финская сауна</small></span><b>3 700 ₽</b></div>
+            <div class="row"><span>1 месяц — с бассейном<small>Бассейн, аквааэробика, сауна, групповые, тренажёрный зал</small></span><b>4 200 ₽</b></div>
+            <div class="row"><span>Дневная карта — тренажёрный зал<small>Групповые, тренажёрный зал, кардио, финская сауна</small></span><b>2 300 ₽</b></div>
+          </div>
+          <div class="ledger">
+            <h3>Долгосрочные</h3>
+            <div class="sub">Ориентир</div>
+            <div class="row"><span>6 месяцев — тренажёрный зал<small>Групповые, зал, кардио, сауна</small></span><b>13 000 ₽</b></div>
+            <div class="row"><span>6 месяцев — с бассейном<small>Зал, групповые, сауна, бассейн, аквааэробика</small></span><b>18 000 ₽</b></div>
+            <div class="row"><span>12 месяцев — тренажёрный зал<small>Групповые, зал, кардио, сауна</small></span><b>15 000 ₽</b></div>
+            <div class="row"><span>12 месяцев — с бассейном<small>Бассейн, аквааэробика, сауна, групповые, зал</small></span><b>19 500 ₽</b></div>
+          </div>
+        </div>
+        <p class="note">Цены и условия приведены для ознакомления и не являются публичной офертой. Есть противопоказания, необходима консультация специалиста.</p>
+      </div>
+    </section>
+
+    <section id="visit" class="ruled">
+      <div class="wrap">
+        <div class="head">
+          <div>
+            <h2>Контакты</h2>
+          </div>
+          <p>Актуальные телефоны, график, запись и акции смотрите в выбранном филиале или в официальных каналах сети.</p>
+        </div>
+        <div class="visit">
+          <div class="panel">
+            <dl class="dl">
+              <div><dt>Филиалы</dt><dd>Набережные Челны: 54-й комплекс, 26; ТЦ «Палитра», проспект Мира, 49а.<br>Нижнекамск: Сити Молл, проспект Химиков, 18.</dd></div>
+              <div><dt>График и запись</dt><dd>Уточняйте в выбранном клубе: время посещения и расписание могут отличаться.</dd></div>
+              <div><dt>Связь</dt><dd>Телефоны, мессенджеры и запись — в карточках филиалов и официальных соцсетях.</dd></div>
+            </dl>
+            <div class="links" aria-label="Каналы связи">
+              <a class="pill" href="https://vk.ru/strong_arena" target="_blank" rel="noopener">ВКонтакте</a>
+              <a class="pill" href="https://t.me/strongarena" target="_blank" rel="noopener">Telegram</a>
+              <a class="pill" href="https://2gis.ru/nabchelny/branches/4081924033217250" target="_blank" rel="noopener">Филиалы в 2ГИС</a>
+            </div>
+          </div>
+          <div class="panel">
+            <h3 style="font-family:'Manrope',sans-serif;font-size:22px;margin-bottom:10px">Записаться в удобный филиал</h3>
+            <p style="color:var(--muted)">В полной версии сайта здесь можно добавить выбор филиала, форму заявки и передачу обращений администратору. В этом макете форма не отправляет данные.</p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px">
+              <a class="btn" href="#" onclick="return false">Оставить заявку</a>
+              <a class="btn ghost" href="#" onclick="return false">Уточнить расписание</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap inner">
+      <div>© Сильная Арена, сеть фитнес-центров</div>
+      <div class="demo">Демо-версия</div>
+    </div>
+  </footer>
+</body>
+</html>
